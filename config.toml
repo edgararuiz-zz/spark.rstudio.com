@@ -14,7 +14,7 @@ googleAnalytics = ""
 [[menu.main]]
     weight = 1
     name = "Reference"
-    url = "/reference/"
+    url = "/function-reference/"
 
 [[menu.main]]
     weight = 2
