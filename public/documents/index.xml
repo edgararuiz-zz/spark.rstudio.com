@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sparklyr: R interface for Apache Spark</title>
+    <link>/documents/</link>
+    <description>Recent content on sparklyr: R interface for Apache Spark</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/documents/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/documents/ml_bootstrap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/documents/ml_bootstrap/</guid>
+      <description>Spark ML: Bootstrapping In this article, we demonstrate how you might use sdf_sample, alongside the dplyr interface provided by sparklyr, to compute bootstrapped estimates of a statistic. To keep things simple, we&amp;rsquo;ll focus on computation of the mean for the diamonds dataset, but this could expand to any other statistic you might want to compute using sparklyr and Spark.
+First, we load the diamonds dataset, and copy it into Spark.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/documents/ml_examples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/documents/ml_examples/</guid>
+      <description>Spark ML: Examples Initialization library(sparklyr) library(dplyr)  ## ## Attaching package: &#39;dplyr&#39; ## The following objects are masked from &#39;package:stats&#39;: ## ## filter, lag ## The following objects are masked from &#39;package:base&#39;: ## ## intersect, setdiff, setequal, union  library(ggplot2) sc &amp;lt;- spark_connect(&amp;quot;local&amp;quot;, version = &amp;quot;1.6.1&amp;quot;) iris_tbl &amp;lt;- copy_to(sc, iris, &amp;quot;iris&amp;quot;, overwrite = TRUE)  ## The following columns have been renamed: ## - &#39;Sepal.Length&#39; =&amp;gt; &#39;Sepal_Length&#39; (#1) ## - &#39;Sepal.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/documents/perf_1b/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/documents/perf_1b/</guid>
+      <description>Spark Performance: 1B Rows Setup sparklyr:::spark_install(version = &amp;quot;2.0.0-preview&amp;quot;, reset = TRUE, logging = &amp;quot;WARN&amp;quot;)  Initialization library(sparklyr) library(dplyr)  ## ## Attaching package: &#39;dplyr&#39; ## The following objects are masked from &#39;package:stats&#39;: ## ## filter, lag ## The following objects are masked from &#39;package:base&#39;: ## ## intersect, setdiff, setequal, union  library(ggplot2) parquetName &amp;lt;- &amp;quot;billion.parquet&amp;quot; parquetPath &amp;lt;- file.path(getwd(), parquetName) if (dir.exists(parquetPath)) { unlink(parquetPath, recursive = TRUE) } config &amp;lt;- spark_config() config[[&amp;quot;sparklyr.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/documents/perf_dplyr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/documents/perf_dplyr/</guid>
+      <description>Performance: Dplyr Queries Initialization knitr::opts_chunk$set(warning = FALSE, cache = FALSE) library(sparklyr) library(dplyr)  ## ## Attaching package: &#39;dplyr&#39; ## The following objects are masked from &#39;package:stats&#39;: ## ## filter, lag ## The following objects are masked from &#39;package:base&#39;: ## ## intersect, setdiff, setequal, union  library(reshape2) library(ggplot2)  summarize_delay &amp;lt;- function(source) { source %&amp;gt;% group_by(tailnum) %&amp;gt;% summarise(count = n(), dist = mean(distance), delay = mean(arr_delay)) %&amp;gt;% filter(count &amp;gt; 20, dist &amp;lt; 2000) } top_players &amp;lt;- function(source) { source %&amp;gt;% select(playerID, yearID, teamID, G, AB:H) %&amp;gt;% arrange(playerID, yearID, teamID) %&amp;gt;% group_by(playerID) %&amp;gt;% filter(min_rank(desc(H)) &amp;lt;= 2 &amp;amp; H &amp;gt; 0) } top_players_by_run &amp;lt;- function(source) { source %&amp;gt;% select(playerID, yearID, teamID, G, AB:H) %&amp;gt;% arrange(playerID, yearID, teamID) %&amp;gt;% group_by(playerID) %&amp;gt;% filter(min_rank(desc(R)) &amp;lt;= 2 &amp;amp; R &amp;gt; 0) }  spark_perf_test &amp;lt;- function(params, tests) { resultsList &amp;lt;- lapply(params, function(param) { spark_install(version = param$version, reset = TRUE, logging = param$logging) config &amp;lt;- spark_config() if (!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/documents/perf_serialize/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/documents/perf_serialize/</guid>
+      <description>Spark Performance: Serializers Setup sparklyr:::spark_install(version = &amp;quot;2.0.0&amp;quot;, reset = TRUE)  Initialization library(sparklyr) library(dplyr)  ## ## Attaching package: &#39;dplyr&#39; ## The following objects are masked from &#39;package:stats&#39;: ## ## filter, lag ## The following objects are masked from &#39;package:base&#39;: ## ## intersect, setdiff, setequal, union  library(ggplot2) config &amp;lt;- spark_config() config[[&amp;quot;sparklyr.shell.driver-memory&amp;quot;]] &amp;lt;- &amp;quot;3G&amp;quot; config[[&amp;quot;sparklyr.shell.executor-memory&amp;quot;]] &amp;lt;- &amp;quot;1G&amp;quot; logResults &amp;lt;- function(label, test) { runTimes &amp;lt;- lapply(seq_len(3), function(idx) { runTime &amp;lt;- system.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/documents/sql_count_unique_values/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/documents/sql_count_unique_values/</guid>
+      <description>Spark SQL: Count Unique Values This article shows how you might use the dplyr interface to Spark SQL to compute the number of times a particular value shows up in a DataFrame column.
+First, we read our data into Spark.
+library(sparklyr) library(dplyr) library(ggplot2) data(diamonds, package = &amp;quot;ggplot2&amp;quot;) sc &amp;lt;- spark_connect(master = &amp;quot;local&amp;quot;, version = &amp;quot;1.6.1&amp;quot;) diamonds_tbl &amp;lt;- copy_to(sc, diamonds, &amp;quot;diamonds&amp;quot;, overwrite = TRUE)  Now that we have diamonds_tbl available, we can use the dplyr interface to compute the number of times each entry in the cut column occurs.</description>
+    </item>
+    
+  </channel>
+</rss>

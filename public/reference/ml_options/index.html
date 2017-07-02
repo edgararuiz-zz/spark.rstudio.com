@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+   <link rel="stylesheet" href="../../stylesheets/bootstrap.min.css">
+    <title> - sparklyr: R interface for Apache Spark</title>
+    <meta name="generator" content="Hugo 0.20" />
+
+    
+    <meta name="description" content="A website built through Hugo and blogdown (and gitdown).">
+    
+    <link rel="canonical" href="../../reference/ml_options/">
+    
+
+    <meta property="og:url" content="/reference/ml_options/">
+    <meta property="og:title" content="sparklyr: R interface for Apache Spark">
+    <meta property="og:image" content="">
+    <meta name="apple-mobile-web-app-title" content="sparklyr: R interface for Apache Spark">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+
+    <link rel="stylesheet" href="../../stylesheets/fonts.css">
+    <link rel="stylesheet" href="../../stylesheets/application.css">
+    <link rel="stylesheet" href="../../stylesheets/temporary.css">
+    <link rel="stylesheet" href="../../stylesheets/palettes.css">
+    <link rel="stylesheet" href="../../stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Roboto&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="../../javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-rstudio-dark palette-accent-orange">
+
+
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+
+    <div>
+      <h1><a href="../../">sparklyr: R interface for Apache Spark</a></h1>
+    </div>
+
+
+    
+    <div class="button button-twitter" role="button" aria-label="Twitter">
+       <a href="https://twitter.com/rstudio" title="@rstudio on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+    </div>
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/rstudio/sparklyr" title="@rstudio/sparklyr on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+   </div>
+
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Reference" href="../../reference/">
+	
+	Reference
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Documents" href="../../documents/">
+	
+	Documents
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="News" href="../../news/">
+	
+	News
+</a>
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+		  <h1> </h1>
+			
+
+<h1 id="ml-options-options-for-spark-ml-routines"><code>ml_options</code>: Options for Spark ML Routines</h1>
+
+<h2 id="description">Description</h2>
+
+<p>Provide this object to the various Spark ML methods, to control certain
+ facets of the model outputs produced.</p>
+
+<h2 id="usage">Usage</h2>
+
+<pre><code class="language-r">ml_options(id.column = random_string(&quot;id&quot;),
+  response.column = random_string(&quot;response&quot;),
+  features.column = random_string(&quot;features&quot;), model.transform = NULL,
+  only.model = FALSE, na.action = getOption(&quot;na.action&quot;, &quot;na.omit&quot;), ...)
+</code></pre>
+
+<h2 id="arguments">Arguments</h2>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>id.column</code></td>
+<td>The name to assign to the generated id column.</td>
+</tr>
+
+<tr>
+<td><code>response.column</code></td>
+<td>The name to assign to the generated response column.</td>
+</tr>
+
+<tr>
+<td><code>features.column</code></td>
+<td>The name to assign to the generated features column.</td>
+</tr>
+
+<tr>
+<td><code>model.transform</code></td>
+<td>An optional list() function that accepts a Spark model and returns a Spark model. This can be used to supply optional Spark model fitting parameters not made available in the <code>sparklyr</code> APIs.</td>
+</tr>
+
+<tr>
+<td><code>only.model</code></td>
+<td>Boolean; should the Spark model object itself be returned without fitting the actual model? Useful for <a href="ml_one_vs_rest.html"><code>ml_one_vs_rest</code></a> .</td>
+</tr>
+
+<tr>
+<td><code>na.action</code></td>
+<td>An list() function, or the name of an list() function, indicating how missing values should be handled.</td>
+</tr>
+
+<tr>
+<td><code>...</code></td>
+<td>Optional arguments, reserved for future expansion.</td>
+</tr>
+</tbody>
+</table>
+
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = '';
+      var repo_id  = '';
+    
+    </script>
+
+    <script src="../../javascripts/application.js"></script>
+    
+
+    <script>
+      
+      var headers   = document.querySelectorAll('div.level2');
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            if(headers[i].id.length > 0){
+              var li = document.createElement("li");
+              li.setAttribute("class", "anchor");
+              var a  = document.createElement("a");
+              a.setAttribute("href", "#" + headers[i].id);
+              a.setAttribute("title", headers[i].getElementsByTagName("h2")[0].innerHTM);
+              a.innerHTML = headers[i].getElementsByTagName("h2")[0].innerHTML;
+              li.appendChild(a)
+              scrollspy.appendChild(li);
+            }            
+            
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }}
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
